@@ -18,7 +18,6 @@ public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int id = Integer.parseInt(req.getParameter("id"));
 		String name = req.getParameter("name");
 		int age = Integer.parseInt(req.getParameter("age"));
 		long mobile = Long.parseLong(req.getParameter("mobile"));
@@ -27,21 +26,17 @@ public class RegisterServlet extends HttpServlet {
 		
 		User user = new User();
 		user.setName(name);
+		user.setAge(age);
+		user.setMobile(mobile);
 		user.setEmail(email);
 		user.setPassword(password);
 		
 		UserDao dao = new UserDao();
-		boolean b = dao.saveUser(user);
-		
-		if (b) {
+		dao.saveUser(user);
+
 			HttpSession session = req.getSession();
 			session.setAttribute("registration", "Registration Successful");
 			resp.sendRedirect("register.jsp");
-		} else {
-			HttpSession session = req.getSession();
-			session.setAttribute("registration", "User Already exists ! login");
-			resp.sendRedirect("register.jsp");
-		}
 		
 	}
 }

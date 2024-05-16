@@ -23,11 +23,11 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		
 		UserDao dao = new UserDao();
-		User user = dao.fetchUser(email, password);
+		User user = dao.fetchUserByEmailAndPassword(email, password);
 		
 		if (user != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("userObj", user);
 			resp.sendRedirect("home.jsp");
 		} else {
 			HttpSession session = req.getSession();

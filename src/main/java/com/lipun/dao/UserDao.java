@@ -1,43 +1,44 @@
 package com.lipun.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 import com.lipun.dto.User;
 
 public class UserDao {
+	
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("karthik");
+	
+	EntityManager em = emf.createEntityManager();
+	
+	EntityTransaction et = em.getTransaction();
 
-	public boolean saveUser(User user) {
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("karthik");
-		
-		EntityManager em = emf.createEntityManager();
-		
-		EntityTransaction et = em.getTransaction();
-		
-		User find = em.find(User.class, user.getEmail());
-		
-		if (find != null) {
-			return false;
-		} 
+	public void saveUser(User user) {
 		
 		et.begin();
-		em.persist(user);
+		em.merge(user);
 		et.commit();
-		
-		return true;
 		
 		
 	}
 
-	public User fetchUser(String email, String password) {
+	public User fetchUserByEmailAndPassword(String email, String password) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("karthik");
+		Query query = em.createQuery("select u from User u where u.email=?1 and u.password=?2");
+		query.setParameter(1, email);
+		query.setParameter(2, password);
 		
-		EntityManager em = emf.createEntityManager();
+		List<User> list = query.getResultList();
+		User user = null;
 		
-		User user = em.find(User.class, email);
+		for (User u : list) {
+			user = u;
+		}
 		
 		if (user != null) {
 			if (user.getEmail().equals(email) && user.getPassword().equals(password)) {

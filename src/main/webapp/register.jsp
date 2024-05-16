@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Registration page</title>
+<%@ include file="components/bootstrapcss.jsp"%>
 </head>
 <body>
 	<%@ include file="components/navbar.jsp"%>

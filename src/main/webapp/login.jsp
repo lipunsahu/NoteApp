@@ -22,13 +22,13 @@
 				<div class="card paint-card">
 					<div class="card-body">
 						<p class="fs-4 text-center">User Login</p>
-						<%String msg = (String) session.getAttribute("fail");
+						<%String msg = (String) session.getAttribute("login");
 						
 						if(msg != null){%>
 							
 							<h3 class="text-center text-danger"><%= msg %></h3>
 						<%
-							session.removeAttribute("fail");
+							session.removeAttribute("login");
 						}
 						%>
 						<form action="login" method="post">

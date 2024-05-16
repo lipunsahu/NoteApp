@@ -1,7 +1,7 @@
 <%@page import="com.lipun.dto.User"%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="home.jsp">MoManagement</a>
+			<a class="navbar-brand" href="home.jsp">No Note</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -16,7 +16,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">Change Password</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">logout</a></li>
+						aria-current="page" href="logout">logout</a></li>
 				</ul>
 
 			</div>
