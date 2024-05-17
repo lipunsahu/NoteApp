@@ -28,6 +28,18 @@
 		<%=sessionUser.getName()%>
 		,Welcome TO No Note App
 	</h1>
+	
+	<a href="./addNotes.jsp"><button class="btn bg-primary text-white col-md-12">Add Note</button></a>
+	
+	<%String msg = (String) session.getAttribute("addnote");
+						
+		if(msg != null){%>
+							
+			<h3 class="text-center text-danger"><%= msg %></h3>
+			<%
+			session.removeAttribute("addnote");
+						}
+	%>
 
 
 	<%
